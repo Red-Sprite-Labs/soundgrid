@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'soundgrid';
+  urls : string = '../assets/mp3s/buyGolf.mp3';
 }
