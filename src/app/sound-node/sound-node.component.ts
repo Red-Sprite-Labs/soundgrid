@@ -18,6 +18,10 @@ export class SoundNodeComponent implements OnInit, AfterViewInit {
 
   elem : Element;
   ad : HTMLAudioElement;
+
+  dur : number;
+  currentTime : number;
+
   constructor() { }
 
   ngOnInit() {
@@ -44,11 +48,15 @@ export class SoundNodeComponent implements OnInit, AfterViewInit {
     this.elem.addEventListener('mouseup', (e) => {
       this.elem.setAttribute('background', this.baseColor);
       console.log('up!');
-      console.log('DUR: ', this.ad.duration);
-      console.log(this.ad.currentTime);
+      this.dur = this.ad.duration;
+      this.currentTime = this.ad.currentTime;
       this.ad.pause();
     })
 
     
+  }
+
+  setBarWidth() : number {
+    return (this.currentTime / this.dur);
   }
 }
