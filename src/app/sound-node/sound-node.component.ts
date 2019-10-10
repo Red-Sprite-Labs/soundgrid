@@ -17,7 +17,7 @@ export class SoundNodeComponent implements OnInit, AfterViewInit {
   @Input() mp3Url : string;
 
   elem : Element;
-
+  ad : HTMLAudioElement;
   constructor() { }
 
   ngOnInit() {
@@ -28,21 +28,25 @@ export class SoundNodeComponent implements OnInit, AfterViewInit {
     console.log(this.identifier);
     this.elem = document.getElementById(this.identifier);
 
-    var player = new Audio();
-    player.src = this.mp3Url;
-    console.log('SRC, ', player.src);
-    player.load();
+    this.ad = new Audio();
+    this.ad.src = this.mp3Url;
+    console.log('SRC, ', this.ad.src);
+    this.ad.load();
     
+    console.log(this.ad);
+
     this.elem.addEventListener('mousedown', (e) => {
       this.elem.setAttribute('background', `${this.pressedColor} !important;`);
       console.log('Pressed');
-      player.play();
+      this.ad.play();
     });
 
     this.elem.addEventListener('mouseup', (e) => {
       this.elem.setAttribute('background', this.baseColor);
       console.log('up!');
-      player.pause();
+      console.log('DUR: ', this.ad.duration);
+      console.log(this.ad.currentTime);
+      this.ad.pause();
     })
 
     
