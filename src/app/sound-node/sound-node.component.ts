@@ -45,6 +45,11 @@ export class SoundNodeComponent implements OnInit, AfterViewInit {
       this.ad.play();
     });
 
+    this.elem.addEventListener('touchstart', (e) => {
+      console.log('Pressed');
+      this.ad.play();
+    });
+
     this.elem.addEventListener('mouseup', (e) => {
       this.elem.setAttribute('background', this.baseColor);
       console.log('up!');
@@ -53,7 +58,13 @@ export class SoundNodeComponent implements OnInit, AfterViewInit {
       this.ad.pause();
     })
 
-    
+    this.elem.addEventListener('touchend', (e) => {
+      this.elem.setAttribute('background', this.baseColor);
+      console.log('up!');
+      this.dur = this.ad.duration;
+      this.currentTime = this.ad.currentTime;
+      this.ad.pause();
+    })
   }
 
   setBarWidth() : number {
